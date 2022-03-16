@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.labelTitle = new System.Windows.Forms.Label();
             this.buttonFolderBrowser = new System.Windows.Forms.Button();
             this.DFS = new System.Windows.Forms.RadioButton();
@@ -42,10 +41,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.BFS = new System.Windows.Forms.RadioButton();
-            this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
-            this.guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(this.components);
-            this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // labelTitle
@@ -125,7 +120,7 @@
             // labelFolderBrowser
             // 
             this.labelFolderBrowser.AutoSize = true;
-            this.labelFolderBrowser.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.labelFolderBrowser.BackColor = System.Drawing.Color.Transparent;
             this.labelFolderBrowser.Location = new System.Drawing.Point(268, 209);
             this.labelFolderBrowser.Name = "labelFolderBrowser";
             this.labelFolderBrowser.Size = new System.Drawing.Size(79, 13);
@@ -175,32 +170,12 @@
             this.BFS.UseVisualStyleBackColor = true;
             this.BFS.CheckedChanged += new System.EventHandler(this.BFS_CheckedChanged);
             // 
-            // guna2PictureBox1
-            // 
-            this.guna2PictureBox1.ImageRotate = 0F;
-            this.guna2PictureBox1.Location = new System.Drawing.Point(429, 136);
-            this.guna2PictureBox1.Name = "guna2PictureBox1";
-            this.guna2PictureBox1.Size = new System.Drawing.Size(515, 372);
-            this.guna2PictureBox1.TabIndex = 11;
-            this.guna2PictureBox1.TabStop = false;
-            // 
-            // guna2BorderlessForm1
-            // 
-            this.guna2BorderlessForm1.ContainerControl = this;
-            this.guna2BorderlessForm1.DockIndicatorTransparencyValue = 0.6D;
-            this.guna2BorderlessForm1.TransparentWhileDrag = true;
-            // 
-            // guna2Elipse1
-            // 
-            this.guna2Elipse1.TargetControl = this;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.SkyBlue;
+            this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(1020, 547);
-            this.Controls.Add(this.guna2PictureBox1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -213,10 +188,8 @@
             this.Controls.Add(this.BFS);
             this.Controls.Add(this.buttonFolderBrowser);
             this.Controls.Add(this.labelTitle);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -237,9 +210,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.RadioButton BFS;
-        private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
-        private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
-        private Guna.UI2.WinForms.Guna2Elipse guna2Elipse1;
+        // private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
+        // private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
+        // private Guna.UI2.WinForms.Guna2Elipse guna2Elipse1;
     }
 }
 
