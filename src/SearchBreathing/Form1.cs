@@ -16,6 +16,7 @@ namespace SearchBreathing
         private string fileName;
         private bool findAll;
         private string searchType;
+        private int numberOfClick = 0;
 
         public Form1()
         {
@@ -28,6 +29,8 @@ namespace SearchBreathing
             if (result == DialogResult.OK)
             {
                 startingDirectory = fbd.SelectedPath;
+                labelFolderBrowser.Text = startingDirectory;
+                buttonFolderBrowser.Text = "Change Folder..";
             }
         }
 
@@ -76,6 +79,15 @@ namespace SearchBreathing
                 fileName = tb.Text;
             }
         }
+
+        private void inputFileName_OnClick(object sender, EventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            numberOfClick++;
+            if(numberOfClick == 1)
+                tb.Clear();
+        }
+
         private void checkBoxFindAll_CheckedChanged(object sender, EventArgs e)
         {
             CheckBox cb = sender as CheckBox;
@@ -105,9 +117,8 @@ namespace SearchBreathing
                 // call dfs function, with params
                 // startingDirectory    - directory awal
                 // fileName             - nama file yang dicar
-                // findAll              - bool, if true cari semuany
+                // findAll              - bool, if true cari semuanya
             }
         }
-
     }
 }
