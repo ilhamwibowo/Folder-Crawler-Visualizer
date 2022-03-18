@@ -47,7 +47,7 @@
             // 
             this.labelTitle.AutoSize = true;
             this.labelTitle.Font = new System.Drawing.Font("Tw Cen MT Condensed Extra Bold", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTitle.Location = new System.Drawing.Point(294, 22);
+            this.labelTitle.Location = new System.Drawing.Point(62, 43);
             this.labelTitle.Name = "labelTitle";
             this.labelTitle.Size = new System.Drawing.Size(412, 74);
             this.labelTitle.TabIndex = 0;
@@ -55,7 +55,7 @@
             // 
             // buttonFolderBrowser
             // 
-            this.buttonFolderBrowser.Location = new System.Drawing.Point(145, 200);
+            this.buttonFolderBrowser.Location = new System.Drawing.Point(124, 189);
             this.buttonFolderBrowser.Name = "buttonFolderBrowser";
             this.buttonFolderBrowser.Size = new System.Drawing.Size(99, 31);
             this.buttonFolderBrowser.TabIndex = 1;
@@ -66,7 +66,7 @@
             // DFS
             // 
             this.DFS.AutoSize = true;
-            this.DFS.Location = new System.Drawing.Point(221, 386);
+            this.DFS.Location = new System.Drawing.Point(200, 375);
             this.DFS.Name = "DFS";
             this.DFS.Size = new System.Drawing.Size(46, 17);
             this.DFS.TabIndex = 3;
@@ -88,7 +88,7 @@
             // 
             // inputFileName
             // 
-            this.inputFileName.Location = new System.Drawing.Point(145, 283);
+            this.inputFileName.Location = new System.Drawing.Point(124, 272);
             this.inputFileName.Name = "inputFileName";
             this.inputFileName.Size = new System.Drawing.Size(138, 20);
             this.inputFileName.TabIndex = 4;
@@ -98,7 +98,7 @@
             // 
             // search
             // 
-            this.search.Location = new System.Drawing.Point(160, 420);
+            this.search.Location = new System.Drawing.Point(139, 409);
             this.search.Name = "search";
             this.search.Size = new System.Drawing.Size(98, 31);
             this.search.TabIndex = 5;
@@ -109,7 +109,7 @@
             // checkBoxFindAll
             // 
             this.checkBoxFindAll.AutoSize = true;
-            this.checkBoxFindAll.Location = new System.Drawing.Point(145, 323);
+            this.checkBoxFindAll.Location = new System.Drawing.Point(124, 312);
             this.checkBoxFindAll.Name = "checkBoxFindAll";
             this.checkBoxFindAll.Size = new System.Drawing.Size(113, 17);
             this.checkBoxFindAll.TabIndex = 6;
@@ -121,7 +121,7 @@
             // 
             this.labelFolderBrowser.AutoSize = true;
             this.labelFolderBrowser.BackColor = System.Drawing.Color.Transparent;
-            this.labelFolderBrowser.Location = new System.Drawing.Point(268, 209);
+            this.labelFolderBrowser.Location = new System.Drawing.Point(247, 198);
             this.labelFolderBrowser.Name = "labelFolderBrowser";
             this.labelFolderBrowser.Size = new System.Drawing.Size(79, 13);
             this.labelFolderBrowser.TabIndex = 7;
@@ -132,7 +132,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.label2.Location = new System.Drawing.Point(142, 169);
+            this.label2.Location = new System.Drawing.Point(121, 158);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(159, 16);
             this.label2.TabIndex = 8;
@@ -142,7 +142,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(142, 251);
+            this.label3.Location = new System.Drawing.Point(121, 240);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(100, 16);
             this.label3.TabIndex = 9;
@@ -152,7 +152,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(142, 356);
+            this.label4.Location = new System.Drawing.Point(121, 345);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(148, 16);
             this.label4.TabIndex = 10;
@@ -161,7 +161,7 @@
             // BFS
             // 
             this.BFS.AutoSize = true;
-            this.BFS.Location = new System.Drawing.Point(145, 386);
+            this.BFS.Location = new System.Drawing.Point(124, 375);
             this.BFS.Name = "BFS";
             this.BFS.Size = new System.Drawing.Size(45, 17);
             this.BFS.TabIndex = 2;
@@ -175,7 +175,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(1020, 547);
+            this.ClientSize = new System.Drawing.Size(511, 547);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);

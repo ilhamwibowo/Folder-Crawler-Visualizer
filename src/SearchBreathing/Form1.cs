@@ -12,11 +12,40 @@ namespace SearchBreathing
 {
     public partial class Form1 : Form
     {
-        private string startingDirectory;
-        private string fileName;
-        private bool findAll;
-        private string searchType;
+        private string _startingDirectory;
+        private string _fileName;
+        private bool _findAll;
+        private string _searchType;
         private int numberOfClick = 0;
+
+        public string startingDirectory 
+        {
+            get
+            {
+                return _startingDirectory;
+            }
+        }
+        public string fileName
+        {
+            get
+            {
+                return _fileName;
+            }
+        }
+        public bool findAll
+        {
+            get
+            {
+                return _findAll;
+            }
+        }
+        public string searchType
+        {
+            get
+            {
+                return _searchType;
+            }
+        }
 
         public Form1()
         {
@@ -28,8 +57,8 @@ namespace SearchBreathing
             DialogResult result = fbd.ShowDialog();
             if (result == DialogResult.OK)
             {
-                startingDirectory = fbd.SelectedPath;
-                labelFolderBrowser.Text = startingDirectory;
+                _startingDirectory = fbd.SelectedPath;
+                labelFolderBrowser.Text = _startingDirectory;
                 buttonFolderBrowser.Text = "Change Folder..";
             }
         }
@@ -46,7 +75,7 @@ namespace SearchBreathing
 
             if (rb.Checked)
             {
-                searchType = "BFS";
+                _searchType = "BFS";
             }
         }
         private void DFS_CheckedChanged_1(object sender, EventArgs e)
@@ -61,7 +90,7 @@ namespace SearchBreathing
 
             if (rb.Checked)
             {
-                searchType = "DFS";
+                _searchType = "DFS";
             }
         }
 
@@ -76,7 +105,7 @@ namespace SearchBreathing
             }
             else
             {
-                fileName = tb.Text;
+                _fileName = tb.Text;
             }
         }
 
@@ -98,27 +127,14 @@ namespace SearchBreathing
             }
             else
             {
-                findAll = cb.Checked;
+                _findAll = cb.Checked;
             }
         }
 
         private void search_Click(object sender, EventArgs e)
         {
-            // call bfs or dfs function
-            if (searchType == "BFS")
-            {
-                // call bfs function, with params
-                // startingDirectory    - directory awal
-                // fileName             - nama file yang dicar
-                // findAll              - bool, if true cari semuanya
-            }
-            else if (searchType == "DFS")
-            {
-                // call dfs function, with params
-                // startingDirectory    - directory awal
-                // fileName             - nama file yang dicar
-                // findAll              - bool, if true cari semuanya
-            }
+            Form2 form = new Form2(startingDirectory);
+            form.Show();
         }
     }
 }
