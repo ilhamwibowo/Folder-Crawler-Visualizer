@@ -17,50 +17,57 @@ namespace SearchBreathing
     public partial class Form2 : Form
     {
         public string startingDirectory;
+        public string fileName;
+        public string searchType;
+        public bool findAll;
 
-        public Form2(string startingDirectory)
+        public Form2(string startingDirectory, string fileName, string searchType, bool findAll)
         {
             InitializeComponent();
             this.startingDirectory = startingDirectory;
+            this.fileName = fileName;
+            this.searchType = searchType;
+            this.findAll = findAll;
         }
 
         private void Form2_Load(object sender, EventArgs e)
         {
             // gViewer1 viewer = new gViewer1();
             Graph graph = new Graph();
-
-            graph.AddEdge("A", "B");
-            graph.AddEdge("A", "C").Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;
-            graph.AddEdge("A", "D");
-            graph.AddEdge("A", "C").Attr.Color = Microsoft.Msagl.Drawing.Color.PaleGreen;
-
-            // warnain node
-            Node c = graph.FindNode("C"); // target
-            c.Attr.FillColor = Microsoft.Msagl.Drawing.Color.Blue; //warna
-
-            // warnain edge
-            foreach (var edge in graph.Edges)
+            
+            _ = new List<string>();
+            if (searchType == "DFS")
             {
-                if (edge.Target == "C") //target
-                {
-                    edge.Attr.Color = Microsoft.Msagl.Drawing.Color.AliceBlue; // warna
-                }
+                List<string> result = DFS.TraverseTree(startingDirectory, fileName, ref graph, findAll);
+                if (result.Count == 0)
+                    linkLabel1.Text = "Not Founded";
+                else if (result.Count == 1)
+                    linkLabel1.Text = result[0];
+                else
+                    linkLabel1.Text = result[0]; // harus ditambahin buat result > 1
+            } 
+            else // Kasus "BFS"
+            {
+                
             }
-
             graph.Attr.LayerDirection = LayerDirection.TB; // biar jadi kayak tree
             gViewer1.Graph = graph;
 
-            linkLabel1.Text = "Education"; // ganti jadi path jawaban
-
-            // Test 
-            var path = Directory.GetDirectories(startingDirectory);
-            MessageBox.Show(path[4]);
+            // linkLabel1.Text = "Education"; // ganti jadi path jawaban
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             linkLabel1.LinkVisited = true;
-            System.Diagnostics.Process.Start(@"D:\Education"); // ganti path nya jadi jawaban
+            if (searchType == "DFS")
+            {
+                System.Diagnostics.Process.Start(linkLabel1.Text); // harus ditambahin buat result > 1
+            } 
+            else // kasus "BFS"
+            {
+
+            }
+            // System.Diagnostics.Process.Start(@"D:\Education"); // ganti path nya jadi jawaban
         }
 
         private void button1_Click(object sender, EventArgs e)

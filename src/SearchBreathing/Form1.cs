@@ -18,7 +18,7 @@ namespace SearchBreathing
         private string _searchType;
         private int numberOfClick = 0;
 
-        public string startingDirectory 
+        public string startingDirectory
         {
             get
             {
@@ -133,7 +133,7 @@ namespace SearchBreathing
 
         private void search_Click(object sender, EventArgs e)
         {
-            Form2 form = new Form2(startingDirectory);
+            Form2 form = new Form2(startingDirectory, fileName, searchType, findAll);
             form.Show();
         }
     }
