@@ -48,8 +48,23 @@ namespace SearchBreathing
             } 
             else // Kasus "BFS"
             {
-                
+                BFS bfs = new BFS(startingDirectory, fileName, findAll);
+                List<string> result = bfs.getSolution();
+                graph = bfs.getGraph();
+                if (result.Count == 0)
+                {
+                    linkLabel1.Text = "Not Found";
+                }
+                else if (result.Count == 1)
+                {
+                    linkLabel1.Text = result[0];
+                }
+                else
+                {
+                    linkLabel1.Text = result[0];
+                }
             }
+
             graph.Attr.LayerDirection = LayerDirection.TB; // biar jadi kayak tree
             gViewer1.Graph = graph;
 
