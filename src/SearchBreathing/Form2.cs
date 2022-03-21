@@ -74,14 +74,7 @@ namespace SearchBreathing
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             linkLabel1.LinkVisited = true;
-            if (searchType == "DFS")
-            {
-                System.Diagnostics.Process.Start(linkLabel1.Text); // harus ditambahin buat result > 1
-            } 
-            else // kasus "BFS"
-            {
-
-            }
+            System.Diagnostics.Process.Start(linkLabel1.Text); // harus ditambahin buat result > 1
             // System.Diagnostics.Process.Start(@"D:\Education"); // ganti path nya jadi jawaban
         }
 
