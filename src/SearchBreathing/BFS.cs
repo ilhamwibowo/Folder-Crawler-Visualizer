@@ -47,18 +47,22 @@ namespace SearchBreathing
         {
             string currentdir;
             Queue<string> q = new Queue<string>();
+            Queue<int> dupes = new Queue<int>();
             q.Enqueue(dir);
+            dupes.Enqueue(0);
             bool stopsearch = false;
-
+            int dp;
             while (q.Count > 0 && !stopsearch)
             {
                 currentdir = q.Dequeue();
+                dp = dupes.Dequeue();
 
                 //enqueue folders
                 foreach (string di in Directory.GetDirectories(currentdir))
                 {
                     q.Enqueue(di);
-                    addTreeEdge(Path.GetFileName(currentdir), Path.GetFileName(di), ref graph,2);
+                    dupes.Enqueue(countDuplicates(graph, Path.GetFileName(di)));
+                    addTreeEdge(Path.GetFileName(currentdir), Path.GetFileName(di), ref graph, 2);
                     //this.graph.AddEdge(Path.GetFileName(currentdir), Path.GetFileName(di));
                 }
 
@@ -69,16 +73,33 @@ namespace SearchBreathing
                     if (Path.GetFileName(f) == filename)
                     {
                         this.solution.Add(f);
-                        addTreeEdge(Path.GetFileName(currentdir), Path.GetFileName(f), ref graph, 1);
+                        if (dp > 0)
+                        {
+                            string parent = $"{Path.GetFileName(currentdir)}({dp})";
+                            addTreeEdge(parent, Path.GetFileName(f), ref graph, 1);
+                        }
+                        else
+                        {
+                            addTreeEdge(Path.GetFileName(currentdir), Path.GetFileName(f), ref graph, 1);
+                        }
+                        
                         if (!findall)
                         {
-                            colorQueue(q,ref this.graph);
+                            colorQueue(q,dupes, ref this.graph);
                             stopsearch = true;
                         }
                     }
                     else
                     {
-                        addTreeEdge(Path.GetFileName(currentdir), Path.GetFileName(f), ref graph, 2);
+                        if (dp > 0)
+                        {
+                            string parent = $"{Path.GetFileName(currentdir)}({dp})";
+                            addTreeEdge(parent, Path.GetFileName(f), ref graph, 2);
+                        }
+                        else
+                        {
+                            addTreeEdge(Path.GetFileName(currentdir), Path.GetFileName(f), ref graph, 2);
+                        }
                     }
                 }
 
@@ -96,20 +117,50 @@ namespace SearchBreathing
 
         }
 
-
-        public void colorQueue(Queue<string> left, ref Graph graph)
+        public int countDuplicates(Graph graph, string target)
         {
+            int count = 0;
+            foreach (var di in graph.Edges)
+            {
+                if (di.Target == target)
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        public void colorQueue(Queue<string> left,Queue<int> dupes, ref Graph graph)
+        {
+            int dp;
+            string parent;
             foreach (string f in left)
             {
+                dp = dupes.Dequeue();
+
                 foreach (string s in Directory.GetDirectories(f))
                 {
-                    graph.AddEdge(Path.GetFileName(f), Path.GetFileName(s)).Attr.Color = Color.Black;
-                    graph.FindNode(Path.GetFileName(s)).Label.FontColor = Color.Black;
+                    if (dp > 0)
+                    {
+                        parent = $"{Path.GetFileName(f)}({dp})";
+                    }
+                    else
+                    {
+                        parent = s;
+                    }
+                    addTreeEdge(parent, Path.GetFileName(s), ref graph, 3);
                 }
                 foreach (string s in Directory.GetFiles(f))
                 {
-                    graph.AddEdge(Path.GetFileName(f), Path.GetFileName(s)).Attr.Color = Color.Black;
-                    graph.FindNode(Path.GetFileName(s)).Label.FontColor = Color.Black;
+                    if (dp > 0)
+                    {
+                        parent = $"{Path.GetFileName(f)}({dp})";
+                    }
+                    else
+                    {
+                        parent = s;
+                    }
+                    addTreeEdge(parent, Path.GetFileName(s), ref graph, 3);
                 }
 
             }
@@ -127,13 +178,6 @@ namespace SearchBreathing
             return null;
         }
         
-        public void colorSolution(string start, List<string> solution, ref Graph graph)
-        {
-            foreach (string di in solution)
-            {
-                colorPath(start, Path.GetFileName(di),ref graph);
-            }
-        }
 
         public static string FindParent(string leaf, ref Graph graph)
         {
@@ -172,14 +216,20 @@ namespace SearchBreathing
 
         public void addTreeEdge(string parent, string child, ref Graph graph, int target)
         {
-            int count = 0;
-            string s = child;
+            int count;
+            string s;
 
-            while(isNodeExist(graph,s))
+            count = countDuplicates(graph, child);
+            
+            if (count > 0)
             {
-                count = count + 1;
-                s = $"{child}({count})";        
+                s = $"{child}({count})";
             }
+            else
+            {
+                s = child;
+            }
+           
 
             if (target == 1)
             {
