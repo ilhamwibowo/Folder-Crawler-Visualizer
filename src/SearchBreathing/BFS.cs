@@ -23,12 +23,13 @@ namespace SearchBreathing
     {
         public List<string> solution;
         public Graph graph;
-
+        static String root;
         public BFS(string dir, string filename, bool findall)
         {
             solution = new List<string>();
             graph = new Graph();
             bfs(dir, filename, findall);
+            root = Path.GetFileName(filename);
         }
 
         public List<string> getSolution()
@@ -43,7 +44,6 @@ namespace SearchBreathing
 
         public void bfs(string dir, string filename, bool findall)
         {
-            string root = Path.GetFileName(dir);
             string currentdir;
             Queue<string> q = new Queue<string>();
             q.Enqueue(dir);
@@ -57,7 +57,7 @@ namespace SearchBreathing
                 foreach (string di in Directory.GetDirectories(currentdir))
                 {
                     q.Enqueue(di);
-                    addTreeEdge(root, Path.GetFileName(currentdir), Path.GetFileName(di), ref graph,false);
+                    addTreeEdge(Path.GetFileName(currentdir), Path.GetFileName(di), ref graph,2);
                     //this.graph.AddEdge(Path.GetFileName(currentdir), Path.GetFileName(di));
                 }
 
@@ -68,7 +68,7 @@ namespace SearchBreathing
                     if (Path.GetFileName(f) == filename)
                     {
                         this.solution.Add(f);
-                        addTreeEdge(root, Path.GetFileName(currentdir), Path.GetFileName(f), ref graph, true);
+                        addTreeEdge(Path.GetFileName(currentdir), Path.GetFileName(f), ref graph, 1);
                         if (!findall)
                         {
                             colorQueue(q,ref this.graph);
@@ -77,28 +77,35 @@ namespace SearchBreathing
                     }
                     else
                     {
-                        addTreeEdge(root, Path.GetFileName(currentdir), Path.GetFileName(f), ref graph, false);
+                        addTreeEdge(Path.GetFileName(currentdir), Path.GetFileName(f), ref graph, 2);
                     }
                 }
 
 
             }
 
+            //graph = reverseGraph(graph);
             //colorSolution(root, solution, ref graph);
 
             //warnain 
 
         }
 
+
         public void colorQueue(Queue<string> left, ref Graph graph)
         {
-            string parent;
-            foreach (string path in left)
+            foreach (string f in left)
             {
-                parent = path.Remove(path.LastIndexOf(@"\"));
-                graph.RemoveEdge(FindEdge(Path.GetFileName(parent), Path.GetFileName(path), graph));
-                graph.AddEdge(Path.GetFileName(parent), Path.GetFileName(path)).Attr.Color = Color.Black;
-            }     
+                foreach (string s in Directory.GetDirectories(f))
+                {
+                    graph.AddEdge(Path.GetFileName(f), Path.GetFileName(s)).Attr.Color = Color.Black;
+                }
+                foreach (string s in Directory.GetFiles(f))
+                {
+                    graph.AddEdge(Path.GetFileName(f), Path.GetFileName(s)).Attr.Color = Color.Black;
+                }
+
+            }
         }
 
 
@@ -155,7 +162,7 @@ namespace SearchBreathing
             return false;
         }
 
-        public void addTreeEdge(string root, string parent, string child, ref Graph graph, bool target)
+        public void addTreeEdge(string parent, string child, ref Graph graph, int target)
         {
             int count = 0;
             string s = child;
@@ -166,14 +173,18 @@ namespace SearchBreathing
                 s = $"{child}({count})";        
             }
 
-            if (target)
+            if (target == 1)
             {
                 graph.AddEdge(parent, s).Attr.Color = Color.Blue;
                 colorPath(root, s, ref graph);
             }
-            else
+            else if (target == 2)
             {
                 graph.AddEdge(parent, s).Attr.Color = Color.Red;
+            }
+            else
+            {
+                graph.AddEdge(parent, s).Attr.Color = Color.Black;
             }
             
         }
