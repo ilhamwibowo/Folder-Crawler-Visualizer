@@ -32,5 +32,5 @@ Munir, R., 2022. BFS dan DFS (Bagian 1). [online] Informatika.stei.itb.ac.id. Av
 
 Munir, R., 2022. BFS dan DFS (Bagian 2). [online] Informatika.stei.itb.ac.id. Available at: <https://informatika.stei.itb.ac.id/~rinaldi.munir/Stmik/2020-2021/BFS-DFS-2021-Bag2.pdf> [Accessed 25 Maret 2022].
 
-Microsoft Windows Form .NET Documentation [online] docs.microsoft.com. Available at: <https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms?view=windowsdesktop-6.0 > [Accessed 2 February 2022].
+Microsoft Windows Form .NET Documentation [online] docs.microsoft.com. Available at: <https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms?view=windowsdesktop-6.0 > [Accessed 18 Maret 2022].
 
