@@ -52,6 +52,7 @@ namespace SearchBreathing
             dupes.Enqueue(0);
             bool stopsearch = false;
             int dp;
+
             while (q.Count > 0 && !stopsearch)
             {
                 currentdir = q.Dequeue();
