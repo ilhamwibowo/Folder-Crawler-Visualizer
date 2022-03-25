@@ -28,8 +28,9 @@ namespace SearchBreathing
         {
             solution = new List<string>();
             graph = new Graph();
+            root = Path.GetFileName(dir);
             bfs(dir, filename, findall);
-            root = Path.GetFileName(filename);
+            
         }
 
         public List<string> getSolution()
@@ -84,6 +85,10 @@ namespace SearchBreathing
 
             }
 
+            if (solution.Count == 0)
+            {
+                graph.FindNode(root).Label.FontColor = Color.Red;
+            }
             //graph = reverseGraph(graph);
             //colorSolution(root, solution, ref graph);
 
@@ -99,10 +104,12 @@ namespace SearchBreathing
                 foreach (string s in Directory.GetDirectories(f))
                 {
                     graph.AddEdge(Path.GetFileName(f), Path.GetFileName(s)).Attr.Color = Color.Black;
+                    graph.FindNode(Path.GetFileName(s)).Label.FontColor = Color.Black;
                 }
                 foreach (string s in Directory.GetFiles(f))
                 {
                     graph.AddEdge(Path.GetFileName(f), Path.GetFileName(s)).Attr.Color = Color.Black;
+                    graph.FindNode(Path.GetFileName(s)).Label.FontColor = Color.Black;
                 }
 
             }
@@ -146,9 +153,10 @@ namespace SearchBreathing
             {
                 graph.RemoveEdge(FindEdge(parent, leaf, graph));
                 graph.AddEdge(parent, leaf).Attr.Color = Color.Blue;
+                graph.FindNode(leaf).Label.FontColor = Color.Blue;
                 colorPath(start, parent, ref graph);
             }
-            
+            graph.FindNode(root).Label.FontColor = Color.Blue;
         }
 
         public bool isNodeExist(Graph graph, string target)
@@ -176,15 +184,19 @@ namespace SearchBreathing
             if (target == 1)
             {
                 graph.AddEdge(parent, s).Attr.Color = Color.Blue;
+                graph.FindNode(s).Label.FontColor = Color.Blue;
+                
                 colorPath(root, s, ref graph);
             }
             else if (target == 2)
             {
                 graph.AddEdge(parent, s).Attr.Color = Color.Red;
+                graph.FindNode(s).Label.FontColor = Color.Red;
             }
             else
             {
                 graph.AddEdge(parent, s).Attr.Color = Color.Black;
+                graph.FindNode(s).Label.FontColor = Color.Black;
             }
             
         }
