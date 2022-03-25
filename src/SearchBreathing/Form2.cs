@@ -20,6 +20,7 @@ namespace SearchBreathing
         public string fileName;
         public string searchType;
         public bool findAll;
+        public List<string> result;
 
         public Form2(string startingDirectory, string fileName, string searchType, bool findAll)
         {
@@ -34,48 +35,57 @@ namespace SearchBreathing
         {
             // gViewer1 viewer = new gViewer1();
             Graph graph = new Graph();
+            string url = "";
             
             _ = new List<string>();
             if (searchType == "DFS")
             {
-                List<string> result = DFS.TraverseTree(startingDirectory, fileName, ref graph, findAll);
-                if (result.Count == 0)
-                    linkLabel1.Text = "Not Founded";
-                else if (result.Count == 1)
-                    linkLabel1.Text = result[0];
-                else
-                    linkLabel1.Text = result[0]; // harus ditambahin buat result > 1
+                this.result = DFS.TraverseTree(startingDirectory, fileName, ref graph, findAll);
+                
             } 
             else // Kasus "BFS"
             {
                 BFS bfs = new BFS(startingDirectory, fileName, findAll);
-                List<string> result = bfs.getSolution();
+                this.result = bfs.getSolution();
                 graph = bfs.getGraph();
-                if (result.Count == 0)
+            }
+
+            linkLabel1.LinkClicked += new LinkLabelLinkClickedEventHandler(linkLabel1_LinkClicked);
+
+            if (this.result.Count == 0)
+                linkLabel1.Text = "Not Founded";
+            else if (this.result.Count == 1)
+                linkLabel1.Text = this.result[0];
+            else
+            {
+                for (int i =0;i<this.result.Count; i++)
                 {
-                    linkLabel1.Text = "Not Found";
+                    url += this.result[i];
+                    url += "\n"; 
                 }
-                else if (result.Count == 1)
+                linkLabel1.Text = url; // harus ditambahin buat result > 1
+
+                foreach ( string path in this.result )
                 {
-                    linkLabel1.Text = result[0];
-                }
-                else
-                {
-                    linkLabel1.Text = result[0];
+                    linkLabel1.Links.Add(url.IndexOf(path), path.Length);
                 }
             }
 
             graph.Attr.LayerDirection = LayerDirection.TB; // biar jadi kayak tree
             gViewer1.Graph = graph;
-
-            // linkLabel1.Text = "Education"; // ganti jadi path jawaban
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            linkLabel1.LinkVisited = true;
-            System.Diagnostics.Process.Start(linkLabel1.Text); // harus ditambahin buat result > 1
-            // System.Diagnostics.Process.Start(@"D:\Education"); // ganti path nya jadi jawaban
+            string url = "";
+
+            int i = linkLabel1.Links.IndexOf(e.Link);
+            url = this.result[i];
+            url = url.Substring(0, url.IndexOf(this.fileName));
+
+            e.Link.Visited = true;
+
+            System.Diagnostics.Process.Start(url);
         }
 
         private void button1_Click(object sender, EventArgs e)
