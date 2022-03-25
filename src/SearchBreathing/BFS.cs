@@ -23,7 +23,7 @@ namespace SearchBreathing
     {
         public List<string> solution;
         public Graph graph;
-        static String root;
+        public String root;
         public BFS(string dir, string filename, bool findall)
         {
             solution = new List<string>();
