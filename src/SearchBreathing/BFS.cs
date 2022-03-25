@@ -147,7 +147,7 @@ namespace SearchBreathing
                     }
                     else
                     {
-                        parent = s;
+                        parent = Path.GetFileName(f);
                     }
                     addTreeEdge(parent, Path.GetFileName(s), ref graph, 3);
                 }
@@ -159,7 +159,7 @@ namespace SearchBreathing
                     }
                     else
                     {
-                        parent = s;
+                        parent = Path.GetFileName(f);
                     }
                     addTreeEdge(parent, Path.GetFileName(s), ref graph, 3);
                 }
